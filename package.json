@@ -18,6 +18,8 @@
   "homepage": "https://github.com/volving/js-test-snippets#readme",
   "dependencies": {
     "agentkeepalive": "^2.0.3",
+    "expect": "^1.20.2",
+    "mocha": "^3.2.0",
     "underscore": "^1.8.3"
   }
 }
