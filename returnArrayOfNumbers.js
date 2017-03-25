@@ -4,17 +4,15 @@ var expect = require('expect');
 const LIMIT = 31;
 
 function fn(n) {
-    debugger;
+    n = parseInt(n);
     if (typeof n === 'number' && !isNaN(n)) {
-        n = parseInt(n);
         if (n > LIMIT) {
-            console.log(n);
-            // throw new Error(`No more than ${LIMIT}!`);
-            return `No more than ${LIMIT}!`;
+            // return `No more than ${LIMIT}!`;
+            throw new Error(`No more than ${LIMIT}!`);
         }
         if (n < 1) {
-            return `Non-positive numbers are forbidden!`;
-            // throw new Error(`Negative numbers are forbidden!`);
+            // return `Non-positive numbers are forbidden!`;
+            throw new Error(`Non-positive numbers are forbidden!`);
         }
         var validAmount = 0;
         var obj = {};
@@ -28,8 +26,8 @@ function fn(n) {
         }
         return result;
     }
-    // throw new Error(`Input parameter should be a valid number, but "${n}" entered!`);
-    return `Input parameter should be a valid number, but "${n}" entered!`;
+    // return `Input parameter should be a valid number, but "${n}" entered!`;
+    throw new Error(`Input parameter should be a valid number, but "${n}" entered!`);
 }
 /*
 console.log(fn(1));
@@ -56,7 +54,7 @@ function runP(n) {
     var array = fn(n);
     return array.length;
 }
-
+/*
 describe('numbers', () => {
     describe('Non-positive numbers', () => {
         it('Should throw a Error with "Non-positive numbers are forbidden!" when fn(-1)', () => {
@@ -88,6 +86,43 @@ describe('numbers', () => {
         var val2 = Math.random()*1024 + 31;
         it(`Should be No more than ${LIMIT}! when fn(${val2})`, () => {
             expect(runNP(val2)).toEqual(`No more than ${LIMIT}!`);
+        });
+    });
+});
+*/
+
+
+describe('numbers', () => {
+    describe('Non-positive numbers', () => {
+        it('Should throw a Error with "Non-positive numbers are forbidden!" when fn(0)', () => {
+            expect(()=>fn(0)).toThrow(/Non-positive numbers are forbidden!/);
+        });
+        it('Should throw a Error with "Non-positive numbers are forbidden!" when fn(-1)', () => {
+            expect(()=>fn(-1)).toThrow(/Non-positive numbers are forbidden!/);
+        });
+        it('Should throw a Error with "Non-positive numbers are forbidden!" when fn(-parseInt(Math.random()*1000))', () => {
+            expect(()=>fn(-parseInt(Math.random() * 1000))).toThrow(/Non-positive numbers are forbidden!/);
+        });
+        it('Should throw a Error with "Non-positive numbers are forbidden!" when fn(0.1)', () => {
+            expect(()=>fn(0.1)).toThrow(/Non-positive numbers are forbidden!/);
+        });
+    });
+    describe('Positive numbers [1, 30]', () => {
+        it('Should be 1 when fn(1)', () => {
+            expect(runP(1)).toEqual(1);
+        });
+        it('Should be 3 when fn(3)', () => {
+            expect(runP(3)).toEqual(3);
+        });
+        var val1 = parseInt(Math.random()*31+1);
+        it(`Should be ${val1} when fn(${val1})`, () => {
+            expect(runP(val1)).toEqual(val1);
+        });
+    });
+    describe('Positive numbers over 30', () => {
+        var val2 = Math.random()*1024 + 31;
+        it(`Should be No more than ${LIMIT}! when fn(${val2})`, () => {
+            expect(()=>fn(val2)).toThrow(/No more than/);
         });
     });
 });
