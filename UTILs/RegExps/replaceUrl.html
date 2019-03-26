@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Replace &lt;a&gt; with reg methods</title>
+    <script defer>
+        window.onload = function () {
+            let body = document.body;
+            let re =
+                /((http|https|mailto)\:\/\/(?:([\w.]*)@)?(\w+(?:\.\w*)*)((?:\/\w*)*\/?)((?:\?\w+=\w*)(?:\&\w+=\w*)*)?(\#\w*)?)/ig; //query with '?', hash with '#'
+            let a = body.innerHTML;
+            setTimeout(() => {
+                body.innerHTML = a.replace(re, decodeURIComponent('<a href="$1">$1</a>'));
+            }, 2000);
+        };
+    </script>
+</head>
+
+<body>
+    两秒钟后链接会被替换成对应的&lt;a&gt;:
+    Whenever sang my songs http://vno.io,
+    On the stage http://baidu.com, on my own http://blog.vno.io
+    Wherever said my words mailto://x@vno.io, wishing they would be heard
+
+</body>
+
+</html>
