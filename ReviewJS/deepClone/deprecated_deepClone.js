@@ -33,7 +33,7 @@ function getCloner(type) {
 					if('object' !== type) {
 						ret = o
 					} else {
-						
+
 					}
 				}
 				cnt--
