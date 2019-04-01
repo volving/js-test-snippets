@@ -7,7 +7,7 @@
   <title>Document</title>
 </head>
 <body>
-
+<!--
   <p id="worker">
     function fib(i) {
       if(i < 1) {
@@ -29,12 +29,39 @@
     }, false);
   </p>
   <script>
-  var blob = new Blob([document.querySelector('#worker').textContent]);
-  var url = window.URL.createObjectURL(blob);
-  var worker = new Worker(url);
+  let blob = new Blob([document.querySelector('#worker').textContent]);
+  let url = window.URL.createObjectURL(blob);
+  let worker = new Worker(url);
   worker.onmessage = function (e) {
     console.log(e.data);
   };
+  </script>
+-->
+  <script>
+    function init() {
+      function factorial(i) {
+        if (i <= 1) {
+          return 1;
+        }
+        return i * factorial(i - 1);
+      }
+      addEventListener('message', function(e) {
+        if(e) {
+          let n = Number(e.data);
+          if(n < 10) {
+            postMessage(factorial(n));
+          }
+        }
+      })
+    }
+
+    let blob = new Blob(['(' + init.toString()+')()']);
+    let url = URL.createObjectURL(blob);
+    let worker = new Worker(url);
+    worker.onmessage = function(e) {
+      console.log(e.data);
+    };
+    worker.postMessage(4);
   </script>
 </body>
 </html>
