@@ -1,2 +1,20 @@
-whenever sang my songs
-on the stage on my own
+<template>
+  <div>
+
+  </div>
+</template>
+
+<script>
+export default {
+  name: '',
+  props: {},
+  data() {
+    return {};
+  },
+  computed: {}
+};
+</script>
+
+<style scoped>
+
+</style>
