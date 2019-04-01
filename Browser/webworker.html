@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <script type="app/worker" id="worker">
+  <p id="worker">
     function fib(i) {
       if(i < 1) {
         return 0;
@@ -27,7 +27,7 @@
         postMessage('error occured');
       }
     }, false);
-  </script>
+  </p>
   <script>
   var blob = new Blob([document.querySelector('#worker').textContent]);
   var url = window.URL.createObjectURL(blob);
