@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <script type="app/worker" id="worker">
+    function fib(i) {
+      if(i < 1) {
+        return 0;
+      } else if (i === 1) {
+        return 1;
+      } else {
+        return fib(i-1) + fib(i-2);
+      }
+    }
+    let cnt = 0
+    addEventListener('message', function(e) {
+      try{
+        let i = Number(e.data) || ++cnt;
+        postMessage(fib(i));;
+      } catch(err) {
+        postMessage('error occured');
+      }
+    }, false);
+  </script>
+  <script>
+  var blob = new Blob([document.querySelector('#worker').textContent]);
+  var url = window.URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function (e) {
+    console.log(e.data);
+  };
+  </script>
+</body>
+</html>
