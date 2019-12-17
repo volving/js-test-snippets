@@ -70,7 +70,7 @@ const assert = require('assert');
 const { traversGet } = require('../ObjectDiffPatch/TraversGet');
 let obj = null;
 
-describe('traversGet', function () {
+describe('traversGet', function() {
     this.beforeEach('', function() {
         obj = Object.assign({}, local);
     });
@@ -101,4 +101,11 @@ describe('traversGet', function () {
             );
         });
     });
+});
+
+describe('PickAttributes', function () {
+    describe('void list', function () {
+
+    })
+
 });
