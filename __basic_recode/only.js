@@ -27,21 +27,27 @@ function only (obj, keyList) {
         throw new Error('Parameter <obj> is not an object');
     }
 }
-
-let a = { name: 'only', toString: function () { return this.name; } };
-let keyList = ['name', 'toString', 'age'];
-let b = only(a, keyList);
-
-
-console.log('b: ', b);
+/*
 
 /**
  * Test cases!
  */
+/*
+let a = {
+    name: 'only',
+    toString: function () {
+        return this.name;
+    },
+};
+let keyList = ['name', 'toString', 'age'];
+let b = only(a, keyList);
+
+console.log('b: ', b);
+
 // console.log(only(null, keyList)); // Error: Parameter <obj> is not an object
 // console.log(only(a)); // Error: Parameter <keyList> is not an valid key array
 // console.log(only(null, [])) // Error: Parameter <obj> is not an object
 console.log(only(a, []))
+*/
 
-
-// module.exports = only;
+module.exports = only;
