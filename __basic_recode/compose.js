@@ -6,7 +6,6 @@ const { getType } = require('./utils');
 // fn: wrap returns in []
 function compose (fnList, ...args) {
     fnList.reverse();
-    let ret;
     return function () {
         return fnList.reduce(function (pre, fn) {
             if (getType(fn) === 'function') {
