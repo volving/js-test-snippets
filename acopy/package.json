@@ -1,0 +1,14 @@
+{
+  "name": "acopy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "a.js",
+  "scripts": {
+  "dev": "node a.js"
+  },
+  "author": "vno <volving@icloud.com> (http://vno.io)",
+  "license": "MIT",
+  "dependencies": {
+    "md5-file": "^4.0.0"
+  }
+}
