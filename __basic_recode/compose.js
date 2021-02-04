@@ -9,7 +9,12 @@ function compose (fnList, ...args) {
     let ret;
     return function () {
         return fnList.reduce(function (pre, fn) {
-            return fn.call(null, pre);
+            if (getType(fn) === 'function') {
+                return fn.call(null, pre);
+            } else {
+                return pre;
+            }
+
         }, args)
     }
 }
@@ -17,7 +22,7 @@ function compose (fnList, ...args) {
 /**
  * Test cas
  */
-/*
+
 function a (val) {
     console.log('a');
     return `a(${val})`;
@@ -34,8 +39,8 @@ function c(val) {
 }
 
 
-let fuse = compose([ a, b, c ], 'lollipop');
+let fuse = compose([ null, [], a, b, c ], 'lollipop');
 console.log(fuse())
-*/
+
 
 module.exports = compose;
