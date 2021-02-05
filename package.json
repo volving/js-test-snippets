@@ -1,0 +1,11 @@
+{
+  "name": "snippets",
+  "version": "1.0.0",
+  "description": "The files in this repo are all the snippets written during my probing and operating this interesting language---JavaScript. They seem to be naive, but truely who never was a NewBie? Yeah, I admit that~",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vno <volving@icloud.com> (http://vno.io)",
+  "license": "MIT"
+}
